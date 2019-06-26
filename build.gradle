@@ -16,14 +16,28 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
+    if (!project.hasProperty('omitSDCArtifactory')) {
+        maven { url 'http://artifactory-sdc.onsdigital.uk/artifactory/libs-release' }
+        maven { url 'http://artifactory-sdc.onsdigital.uk/artifactory/libs-snapshot' }
+    }
     mavenCentral()
 }
 
 dependencies {
+
+    compile 'uk.gov.ons.census.fwmt:census-fwmt-common:1.0.17-RELEASE'
+    compile 'uk.gov.ons.census.fwmt:census-fwmt-canonical:1.0.14-RELEASE'
+    compile 'uk.gov.ons.census.fwmt:census-fwmt-events:1.0.5-RELEASE'
+    
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    compile 'com.google.cloud:google-cloud-storage:1.79.0'
+
 }
