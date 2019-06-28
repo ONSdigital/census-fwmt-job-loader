@@ -10,7 +10,11 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CSVRecordDTO {
+public class householdCsvDTO {
+
+  @CsvBindByName(column = "actionType")
+  private String actionType;
+
   @CsvBindByName(column = "caseId")
   private String caseId;
 
