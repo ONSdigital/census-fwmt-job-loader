@@ -40,4 +40,8 @@ dependencies {
 
     compile 'com.google.cloud:google-cloud-storage:1.79.0'
 
+    compile 'com.google.cloud:google-cloud-nio:0.30.0-alpha'
+
+    compile 'com.opencsv:opencsv:4.5'
+
 }
