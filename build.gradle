@@ -1,6 +1,31 @@
+import com.github.spotbugs.SpotBugsTask
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.7.2'
+    }
+}
+
 plugins {
-    id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
+    id 'application'
+    id 'idea'
+    id 'maven'
+    id 'maven-publish'
+    id 'org.springframework.boot' version '2.1.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+    id 'jacoco'
+    id 'com.jfrog.artifactory' version '4.8.1'
+    id 'org.ajoberstar.grgit' version '3.0.0'
+    id 'com.github.spotbugs' version '1.6.5'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -44,4 +69,24 @@ dependencies {
 
     compile 'com.opencsv:opencsv:4.5'
 
+}
+
+artifactoryPublish {
+    publications 'maven'
+}
+
+spotbugs {
+    toolVersion = '3.1.9'
+}
+
+tasks.withType(SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", activeProfile
 }

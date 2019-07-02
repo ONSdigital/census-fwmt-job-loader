@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class householdCsvDTO {
+public class HouseholdCsvDTO {
 
   @CsvBindByName(column = "actionType")
   private String actionType;
@@ -29,6 +29,9 @@ public class householdCsvDTO {
 
   @CsvBindByName(column = "coordinatorId")
   private String coordinatorId;
+
+  @CsvBindByName(column = "type")
+  private String type;
 
   @CsvBindByName(column = "organisationName")
   private String organisationName;
@@ -54,6 +57,12 @@ public class householdCsvDTO {
   @CsvBindByName(column = "postCode")
   private String postCode;
 
+  @CsvBindByName(column = "country")
+  private String country;
+
+  @CsvBindByName(column = "ladCode")
+  private String ladCode;
+
   @CsvBindByName(column = "oa")
   private String oa;
 
@@ -63,6 +72,30 @@ public class householdCsvDTO {
   @CsvBindByName(column = "longitude")
   private BigDecimal longitude;
 
+  @CsvBindByName(column = "addressType")
+  private String addressType;
+
+  @CsvBindByName(column = "addressLevel")
+  private String addressLevel;
+
+  @CsvBindByName(column = "treatmentId")
+  private String treatmentId;
+
+  @CsvBindByName(column = "undeliveredAddress")
+  private Boolean undeliveredAddress;
+
+  @CsvBindByName(column = "blankQreReturned")
+  private Boolean blankQreReturned;
+
+  @CsvBindByName(column = "ce1Completed")
+  private Boolean ce1Completed;
+
   @CsvBindByName(column = "ceExpectedCapacity")
   private int ceExpectedResponses;
+
+  @CsvBindByName(column = "ceActualResponses")
+  private int ceActualResponses;
+
+  @CsvBindByName(column = "actionableFrom")
+  private int actionableFrom;
 }
