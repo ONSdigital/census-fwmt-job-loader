@@ -22,8 +22,16 @@ import static uk.gov.ons.census.fwmt.jobloader.config.GatewayEventsConfig.CSV_RE
 @Slf4j
 @Service
 public class CSVConverterServiceImpl implements CSVConverterService {
-  @Value("${gcpBucket.location}")
-  private Resource path;
+  @Value("${gcpBucket.cancelLocation}")
+  private Resource cancelPath;
+
+  @Value("${gcpBucket.createLocation}")
+  private Resource createPath;
+
+  @Value("${gcpBucket.updateLocation}")
+  private Resource updatePath;
+
+  private Resource csvLocation;
 
   @Autowired
   private RmAdapterServiceImpl rmAdapterService;
@@ -37,12 +45,26 @@ public class CSVConverterServiceImpl implements CSVConverterService {
   private String xmlMessage;
 
   @Override
-  public void convertCeCSVToCanonical() throws GatewayException {
+  public void convertCSVToCanonical(String ingestType) throws GatewayException {
+
+    switch (ingestType) {
+      case "Cancel":
+        csvLocation = cancelPath;
+        break;
+      case "Create":
+        csvLocation = createPath;
+        break;
+      case "Update":
+        csvLocation = updatePath;
+        break;
+      default:
+        break;
+    }
 
     CsvToBean<HouseholdCsvDTO> csvToBean;
     try {
       csvToBean = new CsvToBeanBuilder(
-          new InputStreamReader(path.getInputStream(), StandardCharsets.UTF_8))
+          new InputStreamReader(csvLocation.getInputStream(), StandardCharsets.UTF_8))
           .withType(HouseholdCsvDTO.class)
           .build();
     } catch (IOException e) {
@@ -52,20 +74,20 @@ public class CSVConverterServiceImpl implements CSVConverterService {
 
     for (HouseholdCsvDTO householdCsvDTO : csvToBean) {
 
-      switch (householdCsvDTO.getActionType()) {
+      switch (householdCsvDTO.getActionType().toLowerCase()) {
       case "create":
 
-        xmlProducer.constructCreate(householdCsvDTO);
+        xmlMessage = xmlProducer.constructCreate(householdCsvDTO);
 
         break;
       case "cancel":
 
-        xmlProducer.constructCancel(householdCsvDTO);
+        xmlMessage = xmlProducer.constructCancel(householdCsvDTO);
 
         break;
       case "update":
 
-        xmlProducer.constructUpdate(householdCsvDTO);
+        xmlMessage = xmlProducer.constructUpdate(householdCsvDTO);
 
         break;
       }

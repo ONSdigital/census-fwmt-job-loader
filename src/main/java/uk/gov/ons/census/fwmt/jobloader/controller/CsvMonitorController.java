@@ -12,10 +12,29 @@ public class CsvMonitorController {
   @Autowired
   private CSVConverterServiceImpl csvConverterServiceImpl;
 
-  @GetMapping("/ingestCeCsvFile")
-  public ResponseEntity ingestCeCsvFile()
+  private String ingestType;
+
+  @GetMapping("/ingestCancelCsvFile")
+  public ResponseEntity ingestCancelCsvFile()
       throws Exception {
-    csvConverterServiceImpl.convertCeCSVToCanonical();
+    ingestType = "Cancel";
+    csvConverterServiceImpl.convertCSVToCanonical(ingestType);
+    return ResponseEntity.ok("CSV adapter service activated");
+  }
+
+  @GetMapping("/ingestCreateCsvFile")
+  public ResponseEntity ingestCreateCsvFile()
+          throws Exception {
+    ingestType = "Create";
+    csvConverterServiceImpl.convertCSVToCanonical(ingestType);
+    return ResponseEntity.ok("CSV adapter service activated");
+  }
+
+  @GetMapping("/ingestUpdateCsvFile")
+  public ResponseEntity ingestUpdateCsvFile()
+          throws Exception {
+    ingestType = "Update";
+    csvConverterServiceImpl.convertCSVToCanonical(ingestType);
     return ResponseEntity.ok("CSV adapter service activated");
   }
 }

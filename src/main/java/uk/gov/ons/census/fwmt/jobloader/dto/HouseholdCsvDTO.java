@@ -12,6 +12,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class HouseholdCsvDTO {
 
+  @CsvBindByName(column = "actionId")
+  private String actionId;
+
+  @CsvBindByName(column = "actionPlan")
+  private String actionPlan;
+
   @CsvBindByName(column = "actionType")
   private String actionType;
 
@@ -66,8 +72,8 @@ public class HouseholdCsvDTO {
   @CsvBindByName(column = "oa")
   private String oa;
 
-  @CsvBindByName(column = "lattitude")
-  private BigDecimal lattitude;
+  @CsvBindByName(column = "latitude")
+  private BigDecimal latitude;
 
   @CsvBindByName(column = "longitude")
   private BigDecimal longitude;
@@ -81,8 +87,8 @@ public class HouseholdCsvDTO {
   @CsvBindByName(column = "treatmentId")
   private String treatmentId;
 
-  @CsvBindByName(column = "undeliveredAddress")
-  private Boolean undeliveredAddress;
+  @CsvBindByName(column = "undeliveredAsAddressed")
+  private Boolean undeliveredAddressed;
 
   @CsvBindByName(column = "blankQreReturned")
   private Boolean blankQreReturned;
@@ -97,5 +103,5 @@ public class HouseholdCsvDTO {
   private int ceActualResponses;
 
   @CsvBindByName(column = "actionableFrom")
-  private int actionableFrom;
+  private String actionableFrom;
 }
