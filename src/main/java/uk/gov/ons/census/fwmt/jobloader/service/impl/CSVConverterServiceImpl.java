@@ -90,6 +90,9 @@ public class CSVConverterServiceImpl implements CSVConverterService {
         xmlMessage = xmlProducer.constructUpdate(householdCsvDTO);
 
         break;
+
+      default:
+        break;
       }
       rmAdapterService.sendJobRequest(xmlMessage);
       gatewayEventManager
