@@ -45,8 +45,8 @@ rabbitmq:
   maxInterval: 45000
 
 gcpBucket:
-  cancelLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Cancel_Short.csv"
-  createLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Create_Short.csv"
-  updateLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Update_Short.csv"
+  cancelLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Cancel.csv"
+  createLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Create.csv"
+  updateLocation: "gs://ce-csv-bucket-dev/CSV_For_Gateway_Test_Update.csv"
 
 
