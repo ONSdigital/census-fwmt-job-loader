@@ -50,7 +50,7 @@ public class XMLProducer {
                 + "        <addressType>" + householdCsvDTO.getAddressType() + "</addressType>\n"
                 + "        <addressLevel>" + householdCsvDTO.getAddressLevel() + "</addressLevel>\n"
                 + "        <treatmentID>" + householdCsvDTO.getTreatmentId() + "</treatmentID>\n"
-                + "        <coordinatorId>" + householdCsvDTO.getTreatmentId() +"</coordinatorId>\n"
+                + "        <coordinatorId>" + householdCsvDTO.getCoordinatorId() + "</coordinatorId>\n"
                 + "        <fieldOfficerId>" + householdCsvDTO.getMandatoryResource() + "</fieldOfficerId>\n"
                 + "        <undeliveredAsAddress>false</undeliveredAsAddress>\n"
                 + "        <blankQreReturned>false</blankQreReturned>\n"
