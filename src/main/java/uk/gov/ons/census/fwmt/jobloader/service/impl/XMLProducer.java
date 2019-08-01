@@ -44,7 +44,7 @@ public class XMLProducer {
                 + "        </events>\n"
                 + "        <exerciseRef>1</exerciseRef>\n"
                 + "        <userDescription>FWMT Comet Test</userDescription>\n"
-                + "        <surveyName>Household</surveyName>\n"
+                + "        <surveyName>CENSUS</surveyName>\n"
                 + "        <surveyRef>HH</surveyRef>\n"
                 + "        <returnByDate>06/02/2019</returnByDate>\n"
                 + "        <addressType>" + householdCsvDTO.getAddressType() + "</addressType>\n"
